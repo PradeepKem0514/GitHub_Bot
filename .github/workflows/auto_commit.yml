@@ -1,0 +1,35 @@
+name: Git Commit Bot
+
+on:
+  schedule:
+    - cron: '0 0 * * *'   # Every day at midnight UTC
+
+  workflow_dispatch:
+
+jobs:
+  auto-commit:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Configure Git
+        run: |
+          git config user.name "PradeepKem0514"
+          git config user.email "pradeepkalidass56@gmail.com"
+
+      - name: Update File
+        run: |
+          echo "Last Updated: $(date)" > myfile.txt
+
+      - name: Commit Changes
+        run: |
+          git add .
+          git commit -m "Auto Commit - $(date)" || echo "No changes"
+
+      - name: Push Changes
+        run: |
+          git push
