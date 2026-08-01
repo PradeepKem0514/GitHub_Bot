@@ -2,7 +2,7 @@ name: Git Commit Bot
 
 on:
   schedule:
-    - cron: '0 0 * * *'   # Every day at midnight UTC
+    - cron: '*/5 * * * *'   # Every day at midnight UTC
 
   workflow_dispatch:
 
@@ -14,7 +14,7 @@ jobs:
     steps:
 
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Configure Git
         run: |
